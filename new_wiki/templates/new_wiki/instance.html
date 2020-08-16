@@ -1,0 +1,13 @@
+{% extends "new_wiki/layout.html" %}
+
+{% block title %}
+    {{ post.title_tag }}
+{% endblock %}
+
+{% block body %}
+    <div class="post_instance">
+        <p id="index_posts">{{ post.title }} - <a href="{% url 'edit_post' post.pk %}"> <small>Edit</small></a></p>
+        <p id="index_post">{{ post.content }}</p>
+        <a href="{% url 'index' %}" class="btn btn-primary" id="but_inst">Back</a>
+    </div>
+{% endblock %}

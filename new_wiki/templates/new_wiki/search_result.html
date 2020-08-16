@@ -1,0 +1,14 @@
+{% extends "new_wiki/layout.html" %}
+{% block title %}
+    {{ Seatch }}
+{% endblock %}
+
+{% block body %}
+    <ul>
+    {% for post in object_list %}
+        <li>
+            {{ post.title }}, {{ post.content }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

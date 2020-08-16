@@ -1,0 +1,14 @@
+{% extends "new_wiki/layout.html" %}
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1 id="index_posts">Posts</h1>
+    <br>
+    {% for post in object_list %}
+        <li><a href="{% url 'instance' post.pk %}">{{ post.title }} - <small>
+            <a href="{% url 'edit_post' post.pk%}">Edit</a></small></a><br>
+        {{ post.content }}</li><hr>
+    {% endfor %}
+{% endblock %}
