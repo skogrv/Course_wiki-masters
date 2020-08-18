@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from .models import Post
 from .forms import PostForm
-from django.http import Http404, HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -56,3 +56,14 @@ class SearchView(ListView):
             Q(title__icontains=query)
         )
         return list_objects
+
+
+def autocomplete(request):
+    if 'term' in request.GET:
+        qs = Post.objects.filter(title__icontains=request.GET.get('term'))
+        titles = list()
+        for product in qs:
+            titles.append(product.title)
+        # titles = [product.title for product in qs]
+        return JsonResponse(titles, safe=False)
+    return render(request, 'new_wiki/instance.html')

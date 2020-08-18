@@ -2,13 +2,19 @@
 {% block title %}
     {{ Seatch }}
 {% endblock %}
-
+{% block head %}
+{% endblock %}
 {% block body %}
     <ul>
     {% for post in object_list %}
-        <li>
-            {{ post.title }}, {{ post.content }}
-        </li>
+        <div class="post_instance">
+        <hr>
+            <li>
+                <p id="index_posts">{{ post.title }} - <a href="{% url 'edit_post' post.pk %}"> <small>Edit</small></a></p>
+                <p id="index_post">{{ post.content }}</p>
+                <a href="{% url 'index' %}" class="btn btn-primary" id="but_inst">Back</a>
+            </li>
+        </div>
     {% endfor %}
     </ul>
 {% endblock %}
